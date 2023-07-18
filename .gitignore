@@ -27,3 +27,5 @@ backend_sanity/*.tsbuildinfo
 
 # Dotenv and similar local-only files
 *.local
+
+frontend_react/node_modules
