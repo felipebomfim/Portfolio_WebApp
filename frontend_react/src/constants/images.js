@@ -35,7 +35,14 @@ import nb from '../assets/nb.png';
 import skype from '../assets/skype.png';
 import spotify from '../assets/spotify.png';
 
-import felipe_logo from '../assets/felipe_logo.png'
+import felipe_logo from '../assets/felipe-logo.png'
+import felipe_profile from '../assets/felipe-profile.png'
+import felipe_profile_sqr from '../assets/felipe-profile-sqr.png'
+import about_web_development from '../assets/about-web-development.jpg'
+
+import about_devops from '../assets/about-devops.jpg'
+import about_backend from '../assets/about-backend.jpg'
+
 export default {
   email,
   mobile,
@@ -70,5 +77,10 @@ export default {
   nb,
   skype,
   spotify,
-  felipe_logo
+  felipe_logo,
+  felipe_profile,
+  felipe_profile_sqr,
+  about_web_development,
+  about_devops,
+  about_backend
 };

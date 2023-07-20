@@ -1,11 +1,79 @@
 import React from 'react'
+import { motion } from 'framer-motion'
+
+import { images } from '../../constants';
 
 import './Header.scss';
 
+
+const scaleVariants = {
+  whileInView: {
+    scale: [0, 1],
+    opacity: [0, 1],
+    transition: {
+      duration: 1,
+      ease: 'easeInOut'
+    }
+  }
+}
+
 const Header = () => {
   return (
-    <div>Header</div>
+    <div className='app__header app__flex' id='home'>
+      <motion.div
+        whileInView={{ x: [-100, 0], opacity: [0, 1] }}
+        transition={{ duration: 0.5 }}
+        className='app__header-info'
+      >
+        <div className="app__header-badge">
+          <div className="badge-cmp app__flex">
+            <span>👋</span>
+            <div style={{ marginLeft: 20 }}>
+              <p className='p-text'>Hello, I am</p>
+              <h1 className='head-text'>Felipe</h1>
+            </div>
+          </div>
+          <div className="tag-cmp app__flex">
+            <p className='p-text'>- Web developer</p>
+            <p className='p-text'>- Focused on Backend Development</p>
+          </div>
+        </div>
+      </motion.div>
+
+      <motion.div
+        whileInView={{ opacity: [0, 1] }}
+        transition={{ duration: 0.5, delayChildren: 0.5 }}
+        className='app__header-img'
+      >
+
+        <img src={images.felipe_profile_sqr} alt="profile-bg" id="profile-img" />
+
+        <motion.img
+          whileInView={{ scale: [0, 1] }}
+          transition={{ duration: 1, ease: 'easeInOut' }}
+          src={images.circle}
+          alt='profile-circle'
+          className='overlay_circle'
+        ></motion.img>
+      </motion.div>
+
+      <motion.div
+        variants={scaleVariants}
+        whileInView={scaleVariants.whileInView}
+        className='app__header-circles'
+      >
+        {
+          [images.javascript, images.node, images.git].map((circle, index) => (
+            <div className='circle-cmp app__flex' key={`circle-${index}`} >
+              <img src={circle} alt="circle" />
+            </div>
+          ))
+        }
+
+      </motion.div >
+    </div >
   )
+
 }
 
 export default Header
