@@ -4,11 +4,15 @@ import './About.scss';
 
 import { images } from '../../constants';
 
+import { AppWrap } from '../../wrapper';
+
+// import { urlFor, client } from '../../client';
+
 const abouts = [
   {
     title: 'Web Development',
     description: `Graduating as a computer engineer from the renowned Aeronautics Institute of Technology (ITA), I've dedicated myself to the field of web development, applying the rigorous and robust training I received during my academic years. 
-    
+
     This foundational knowledge coupled with my industry experience has honed my abilities in creating efficient and user- friendly websites.`,
     imgUrl: images.about_web_development
   },
@@ -29,9 +33,28 @@ const abouts = [
   // }
 ]
 
+
 const About = () => {
+  // const [abouts, setAbouts] = useState([]);
+
+  //   useEffect(() => {
+  //     const query = '*[_type == "abouts"]';
+  //     client.fetch(query).then(data => {
+  //       console.log(data[0].imgUrl.asset._ref);
+
+  //       data = data.map((about) => {
+  //         // about.imgUrl = about.imgUrl
+  //         return about
+  //       });
+
+  //       return setAbouts(data)
+  //     }
+  //     )
+
+  //   }, [])
+
   return (
-    <div id='about'>
+    <div>
       <h2 className='head-text'>
         <span>About</span> Me
       </h2>
@@ -57,4 +80,4 @@ const About = () => {
   )
 }
 
-export default About
+export default AppWrap(About, 'about')

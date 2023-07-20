@@ -1,5 +1,5 @@
 import React from 'react';
-import { About, Footer, Header, Projects, Skills } from './container';
+import { About, Footer, Header, Projects, Skills, Contact } from './container';
 import { Navbar } from './components';
 import './App.scss';
 
@@ -11,6 +11,7 @@ function App() {
       <About></About>
       <Skills></Skills>
       <Projects></Projects>
+      <Contact></Contact>
       <Footer></Footer>
     </div>
   );
