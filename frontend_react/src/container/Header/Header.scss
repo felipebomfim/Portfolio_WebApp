@@ -1,9 +1,14 @@
 #home {
   position: relative;
-  background: url('../../assets/bgIMG.png');
+  background: url('../../assets/bgIMG.png') no-repeat center center fixed;
+  // background-size: cover;
+  // background-repeat: repeat;
+  // background-position: center;
+
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
-  background-repeat: repeat;
-  background-position: center;
 
   .app__wraper {
     padding: 0;

@@ -13,8 +13,9 @@ function Navbar() {
   return (
     <nav className='app__navbar'>
       <div className='app__navbar-logo'>
-        <img src={images.felipe_logo} alt="logo" />
-        {/* <h1 id="my-name">Felipe</h1> */}
+        <a href="#home">
+          <img src={images.felipe_logo} alt="logo" />
+        </a>
       </div>
       <ul className='app__navbar-links'>
         {
