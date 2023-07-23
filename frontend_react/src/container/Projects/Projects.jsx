@@ -7,56 +7,50 @@ import './Projects.scss';
 
 import { images } from '../../constants';
 
+
+import { client, urlFor } from '../../client';
+
 const Projects = () => {
 
 
-  const projects = [
-    {
-      title: 'Web-Dev Title',
-      description: `A description of the project. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris lorem. Vivamus egestas ligula ut est ornare lobortis. Sed malesuada maximus tortor, at mollis risus viverra eget. Donec mollis pulvinar velit vel interdum.`,
-      projectLink: '#projects',
-      codeLink: 'https://github.com/felipebomfim/',
-      imgUrl: images.about_web_development,
-      tags: ['web app', 'all']
-    },
-    {
-      title: 'Web-Dev Title',
-      description: `A description of the project. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris lorem. Vivamus egestas ligula ut est ornare lobortis. Sed malesuada maximus tortor, at mollis risus viverra eget. Donec mollis pulvinar velit vel interdum.`,
-      projectLink: '#projects',
-      codeLink: 'https://github.com/felipebomfim/',
-      imgUrl: images.about_web_development,
-      tags: ['web app', 'all']
-    },
-    {
-      title: 'Web-Dev Title',
-      description: `A description of the project. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris lorem. Vivamus egestas ligula ut est ornare lobortis. Sed malesuada maximus tortor, at mollis risus viverra eget. Donec mollis pulvinar velit vel interdum.`,
-      projectLink: '#projects',
-      codeLink: 'https://github.com/felipebomfim/',
-      imgUrl: images.about_web_development,
-      tags: ['web app', 'all']
-    },
-    {
-      title: 'API Title',
-      description: `A description of the project. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris lorem. Vivamus egestas ligula ut est ornare lobortis. Sed malesuada maximus tortor, at mollis risus viverra eget. Donec mollis pulvinar velit vel interdum.`,
-      projectLink: '#projects',
-      codeLink: 'https://github.com/felipebomfim/',
-      imgUrl: images.about_backend,
-      tags: ['apis', 'all']
-    },
-    {
-      title: 'API Title',
-      description: `A description of the project. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris lorem. Vivamus egestas ligula ut est ornare lobortis. Sed malesuada maximus tortor, at mollis risus viverra eget. Donec mollis pulvinar velit vel interdum.`,
-      projectLink: '#projects',
-      codeLink: 'https://github.com/felipebomfim/',
-      imgUrl: images.about_backend,
-      tags: ['apis', 'all']
-    },
-  ]
+  // const projects = [
+  //   {
+  //     title: 'Web-Dev Title',
+  //     description: `A description of the project. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris lorem. Vivamus egestas ligula ut est ornare lobortis. Sed malesuada maximus tortor, at mollis risus viverra eget. Donec mollis pulvinar velit vel interdum.`,
+  //     projectLink: '#projects',
+  //     codeLink: 'https://github.com/felipebomfim/',
+  //     imgUrl: images.about_web_development,
+  //     tags: ['Web App', 'all']
+  //   },
+  //   {
+  //     title: 'API Title',
+  //     description: `A description of the project. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris lorem. Vivamus egestas ligula ut est ornare lobortis. Sed malesuada maximus tortor, at mollis risus viverra eget. Donec mollis pulvinar velit vel interdum.`,
+  //     projectLink: '#projects',
+  //     codeLink: 'https://github.com/felipebomfim/',
+  //     imgUrl: images.about_backend,
+  //     tags: ['APIs', 'all']
+  //   },
+  // ]
+
+  const [projects, setProjects] = useState([]);
+  const [filterProjects, setFilterProjects] = useState([])
 
   const [activeFilter, setActiveFilter] = useState('All')
   const [animateCard, setAnimateCard] = useState({ y: 0, opacity: 1 })
 
-  const [filterProjects, setFilterProjects] = useState([...projects])
+  useEffect(() => {
+    const query = '*[_type == "projects"]';
+    client.fetch(query).then(data => {
+      // console.log(data[0].imgUrl.asset._ref);
+
+      // data = data.filter((project) => (project?.imgUrl?.asset !== undefined));
+      setFilterProjects(data)
+      return setProjects(data)
+    }
+    )
+
+  }, [])
+
   const handleProjectsFilter = (item) => {
     setActiveFilter(item);
     setAnimateCard([{ y: 100, opacity: 0 }]);
@@ -66,7 +60,7 @@ const Projects = () => {
       if (item === 'All') {
         setFilterProjects(projects);
       } else {
-        setFilterProjects(projects.filter((el) => el.tags.includes(item.toLowerCase())))
+        setFilterProjects(projects.filter((el) => el.tags.includes(item)))
       }
     }, 700);
 
@@ -79,6 +73,7 @@ const Projects = () => {
       <h2 className='head-text'>
         The <span>Projects</span> I'm Most Proud Of
       </h2>
+      <p style={{ fontSize: 20 }}>(Still in Progress)</p>
 
       <div className='app__projects-filter'>
         {
@@ -102,7 +97,7 @@ const Projects = () => {
         {filterProjects.map((project, index) => (
           <div className='app__projects-item app__flex' key={index}>
             <div className='app__projects-img app__flex'>
-              <img src={project.imgUrl} alt={project.title} />
+              <img src={urlFor(project.imgUrl)} alt={project.title} />
               <motion.div
                 whileHover={{ opacity: [0, 1] }}
                 transition={{ duration: 0.25, ease: 'easeInOut', staggerChildren: 0.5 }}
@@ -149,4 +144,4 @@ const Projects = () => {
   )
 }
 
-export default AppWrap(Projects, 'projects')
+export default AppWrap(Projects, 'projects', 'app__whitebg')

@@ -12,7 +12,6 @@ function App() {
       <Skills></Skills>
       <Projects></Projects>
       <Contact></Contact>
-      <Footer></Footer>
     </div>
   );
 }

@@ -42,6 +42,9 @@ import about_web_development from '../assets/about-web-development.jpg'
 
 import about_devops from '../assets/about-devops.jpg'
 import about_backend from '../assets/about-backend.jpg'
+import mail from '../assets/mail-logo.png'
+import linkedin from '../assets/linkedin.png'
+import github from '../assets/github.png'
 
 export default {
   email,
@@ -82,5 +85,8 @@ export default {
   felipe_profile_sqr,
   about_web_development,
   about_devops,
-  about_backend
+  about_backend,
+  mail,
+  linkedin,
+  github
 };

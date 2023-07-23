@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 
 import { images } from '../../constants'
 
-function Navbar() {
+const Navbar = () => {
 
   const [toggle, setToggle] = useState(false);
 
@@ -28,24 +28,26 @@ function Navbar() {
         }
       </ul>
       <div className="app__navbar-menu" >
-        <HiMenuAlt4 onClick={() => setToggle(true)}></HiMenuAlt4>
+        <HiMenuAlt4 onClick={() => { setToggle(true) }}></HiMenuAlt4>
 
         {
           toggle &&
           (<motion.div
-            whileInView={{ x: [300, 0] }}
-            transition={{ duration: 0.65, ease: 'easeOut' }}
-
+            whileInView={{ x: [100, 0], opacity: [0, 1] }}
+            transition={{ duration: 0.65, ease: 'easeInOut' }}
+            className='app__navbar-menu-motion-div'
+            style={{ opacity: 0 }}
           >
             <HiX onClick={() => setToggle(false)}></HiX>
-
 
             <ul>
               {
 
                 ['home', 'about', 'skills', 'projects', 'contact'].map((item) => (
                   <li key={item}>
-                    <a href={`#${item}`} onClick={() => setToggle(false)} >{item}</a>
+                    <a href={`#${item}`} onClick={() => setToggle(false)} >
+                      {item}
+                    </a>
                   </li>
                 ))
               }

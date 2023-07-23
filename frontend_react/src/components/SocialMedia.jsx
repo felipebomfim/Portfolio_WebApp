@@ -5,16 +5,16 @@ import { BsLinkedin, BsGithub } from 'react-icons/bs'
 const SocialMedia = () => {
   return (
     <div className="app__social">
-      <div>
-        <a href="https://www.linkedin.com/in/felipe-dos-santos-bomfim/?locale=en_US" target="_blank" rel="noopener noreferrer">
+      <a href="https://www.linkedin.com/in/felipe-dos-santos-bomfim/?locale=en_US" target="_blank" rel="noopener noreferrer">
+        <div>
           <BsLinkedin></BsLinkedin>
-        </a>
-      </div>
-      <div>
-        <a href="https://github.com/felipebomfim" target="_blank" rel="noopener noreferrer">
+        </div>
+      </a>
+      <a href="https://github.com/felipebomfim" target="_blank" rel="noopener noreferrer">
+        <div>
           <BsGithub></BsGithub>
-        </a>
-      </div>
+        </div>
+      </a>
     </div>
   )
 }
